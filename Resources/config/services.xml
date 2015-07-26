@@ -1,0 +1,24 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="mv_free_sms_api.send.class">Mv\FreeSmsApi\Sms\Sender</parameter>
+        <parameter key="mv_free_sms_api.sender_builder.class">Mv\FreeSmsApiBundle\Sms\SenderBuilder</parameter>
+    </parameters>
+
+    <services>
+        <service id="mv_free_sms_api.sender_builder" class="%mv_free_sms_api.sender_builder.class%">
+            <argument type="string">%mv_free_sms_api.send.class%</argument>
+        </service>
+        <service id="mv_free_sms_api.sender.all" alias="mv_free_sms_api.sender_builder" />
+
+        <service id="mv_free_sms_api.sender.user" class="%mv_free_sms_api.send.class%" factory-service="mv_free_sms_api.sender_builder" factory-method="build" abstract="true">
+            <argument type="string"></argument><!-- name -->
+            <argument type="string"></argument><!-- user_id -->
+            <argument type="string"></argument><!-- user_api_key -->
+        </service>
+    </services>
+</container>

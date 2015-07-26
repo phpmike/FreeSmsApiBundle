@@ -1,0 +1,28 @@
+{
+    "name": "mv/free-sms-api-bundle",
+    "type": "library",
+    "description": "Bundle SF2 that use library api free mobile sending SMS",
+    "keywords": ["sms", "free", "sms free", "mobile", "sms free mobile", "bundle", "symfony2"],
+    "homepage": "https://github.com/phpmike/FreeSmsApiBundle",
+    "license": "GPL",
+    "authors": [
+        {
+            "name": "Michaël VEROUX",
+            "homepage": "https://github.com/phpmike"
+        }
+    ],
+    "archive": {
+        "exclude": ["Tests/", "build/", "/.travis.yml", "/build.xml", "phpunit.xml.dist"]
+    },
+    "autoload": {
+        "psr-4": { "Mv\\free-sms-api-bundle\\": "" }
+    },
+    "require": {
+        "mv/free-sms-api": "~1.0.0"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.x-dev"
+        }
+    }
+}
