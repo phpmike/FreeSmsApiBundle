@@ -12,6 +12,7 @@ use Mv\FreeSmsApi\Sms\SenderInterface;
 
 /**
  * Class SenderBuilder
+ *
  * @package Mv\FreeSmsApiBundle\Sms
  * @author Michaël VEROUX
  */
@@ -29,6 +30,7 @@ class SenderBuilder
 
     /**
      * SenderBuilder constructor.
+     *
      * @param string $senderClass
      */
     public function __construct($senderClass)
@@ -40,6 +42,7 @@ class SenderBuilder
      * @param string $name
      * @param string $userId
      * @param string $userApiKey
+     *
      * @return SenderInterface
      * @author Michaël VEROUX
      */
@@ -47,7 +50,7 @@ class SenderBuilder
     {
         $senderClass = $this->senderClass;
         $sender = new $senderClass($userId, $userApiKey);
-        if(!$sender instanceof SenderInterface) {
+        if (!$sender instanceof SenderInterface) {
             throw new \RuntimeException(sprintf('Class %s must implement Mv\FreeSmsApi\Sms\SenderInterface', $senderClass));
         }
 
@@ -58,12 +61,13 @@ class SenderBuilder
 
     /**
      * @param string $message
+     *
      * @return $this
      * @author Michaël VEROUX
      */
     public function addMessage($message)
     {
-        foreach($this->senderServices as $service) {
+        foreach ($this->senderServices as $service) {
             $service->addMessage($message);
         }
 
@@ -72,14 +76,15 @@ class SenderBuilder
 
     /**
      * @param string $message
-     * @param array $to
+     * @param array  $to
+     *
      * @return $this
      * @author Michaël VEROUX
      */
     public function addMessageTo($message, array $to = array())
     {
-        foreach($to as $name) {
-            if(!isset($this->senderServices[$name])) {
+        foreach ($to as $name) {
+            if (!isset($this->senderServices[$name])) {
                 throw new FailedException(sprintf('Free user "%" doesn\'t exists!', $name));
             }
 
@@ -90,11 +95,12 @@ class SenderBuilder
     }
 
     /**
+     * @return  void
      * @author Michaël VEROUX
      */
     public function reset()
     {
-        foreach($this->senderServices as $service) {
+        foreach ($this->senderServices as $service) {
             $service->reset();
         }
     }
@@ -106,7 +112,7 @@ class SenderBuilder
     public function send()
     {
         $errors = array();
-        foreach($this->senderServices as $name => $service) {
+        foreach ($this->senderServices as $name => $service) {
             try {
                 $service->send();
             } catch (FailedException $e) {
@@ -114,7 +120,7 @@ class SenderBuilder
             }
         }
 
-        if(count($errors)) {
+        if (count($errors)) {
             throw new FailedException(implode(PHP_EOL, $errors));
         }
 

@@ -4,7 +4,7 @@
     "description": "Bundle SF2 that use library api free mobile sending SMS",
     "keywords": ["sms", "free", "sms free", "mobile", "sms free mobile", "bundle", "symfony2"],
     "homepage": "https://github.com/phpmike/FreeSmsApiBundle",
-    "license": "GPL",
+    "license": "GPL-3.0",
     "authors": [
         {
             "name": "Michaël VEROUX",
