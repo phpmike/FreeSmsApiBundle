@@ -3,6 +3,8 @@ MvFreeSmsApiBundle
 
 This bundle is for sending notification to your Free Mobile (Require Free Mobile account with api key)
 
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/3cb6ebfc-34e7-42d4-a893-a110213818ab/small.png)](https://insight.sensiolabs.com/projects/3cb6ebfc-34e7-42d4-a893-a110213818ab)
+
 Install
 -------
 
